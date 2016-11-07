@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 11:52:46 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/07 11:54:43 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/07 13:43:40 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/07 13:57:58 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memalloc(size_t size)
 {
-	char	tmp;
+	unsigned char *zmem;
 
-	tmp = (char) c;
-	while (*s)
+	if ((zmem = (unsigned char *)malloc(sizeof(unsigned char) * size)))
 	{
-		if (*s == tmp)
-			return ((char *)s);
-		s++;
+		ft_bzero(zmem, size);
+		return (zmem);
 	}
-	if (*s == tmp)
-		return ((char *)s);
 	return (NULL);
 }

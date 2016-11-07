@@ -1,12 +1,27 @@
-#include <unistd.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsporer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/07 13:35:39 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/07 15:49:02 by vsporer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <unistd.h>
+# include <stdlib.h>
 
 void	ft_putchar(char c);
 void	ft_putstr(char const *s);
 size_t	ft_strlen(char const *s);
 char	*ft_strdup(char const *s);
 char	*ft_strcpy(char *dest, char *src);
-char	*ft_strstr(char *str, char *to_find);
+char	*ft_strstr(const char *big, const char *little);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
 int		ft_atoi(char *str);
@@ -30,4 +45,16 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+void	*ft_memalloc(size_t size);
+void	ft_memdel(void **ap);
+char	*ft_strnew(size_t size);
+void	ft_strdel(char **as);
+void	ft_strclr(char *s);
+void	ft_striter(char *s, void (*f)(char *));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+char	*ft_strmap(char const *s, char (*f)(char));
 
+
+#endif

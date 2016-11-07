@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 11:52:46 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/07 11:54:43 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/07 14:16:17 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/07 14:19:30 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_strclr(char *s)
 {
-	char	tmp;
+	int i;
 
-	tmp = (char) c;
-	while (*s)
+	i = 0 ;
+	while (s[i])
 	{
-		if (*s == tmp)
-			return ((char *)s);
-		s++;
+		s[i] = '\0';
+		i++;
 	}
-	if (*s == tmp)
-		return ((char *)s);
-	return (NULL);
 }

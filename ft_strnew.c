@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 11:52:46 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/07 11:54:43 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/07 14:03:24 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/07 14:10:51 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strnew(size_t size)
 {
-	char	tmp;
+	char	*str;
+	int		i;
 
-	tmp = (char) c;
-	while (*s)
+	str = (char *)ft_memalloc(size);
+	i = 0;
+	str[size - 1] = '\0';
+	while (str[i])
 	{
-		if (*s == tmp)
-			return ((char *)s);
-		s++;
+		str[i] = '\0';
+		i++;
 	}
-	if (*s == tmp)
-		return ((char *)s);
-	return (NULL);
+	return (str);
 }
