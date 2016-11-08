@@ -22,8 +22,8 @@ size_t	ft_strlen(char const *s);
 char	*ft_strdup(char const *s);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_strstr(const char *big, const char *little);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_strncmp(char *s1, char *s2, unsigned int n);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
 int		ft_atoi(char *str);
 void	ft_putnbr(int nb);
 void	*ft_memset(void *s, int c, size_t n);
@@ -55,6 +55,9 @@ void	ft_strclr(char *s);
 void	ft_striter(char *s, void (*f)(char *));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strmap(char const *s, char (*f)(char));
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int		ft_strequ(char const *s1, char const *s2,);
+int		ft_strnequ(char const *s1, char const *s2, size_t n);
 
 
 #endif
