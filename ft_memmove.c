@@ -8,7 +8,7 @@ void	*ft_memmove(void *dest, void *src, size_t n)
 
 	tmp_s = (char *)src;
 	tmp_d = (char *)dest;
-	if(tmp = (char *)malloc(sizeof(*tmp) * n))
+	if((tmp = (char *)malloc(sizeof(*tmp) * n)))
 	{
 		while(n)
 		{

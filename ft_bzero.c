@@ -11,5 +11,4 @@ void	ft_bzero(void *s, size_t n)
 		tmp++;
 		n--;
 	}
-	return(s);
 }

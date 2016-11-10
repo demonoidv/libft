@@ -16,5 +16,5 @@ char	*ft_strdup(char const *s)
 		i++;
 	}
 	str[i] = '\0';
-	return(str)
+	return(str);
 }
