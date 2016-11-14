@@ -22,14 +22,12 @@ OBJ =	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 		ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o \
 		ft_strsplit.o ft_itoa.o
 
-INC =	./
-
 CC =	gcc -Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) -c $(SRCS) -I $(INC) $(SRCS)
+	$(CC) -c $(SRCS) $(SRCS)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 

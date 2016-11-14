@@ -54,12 +54,3 @@ char			*ft_itoa(int n)
 	}
 	return (str);
 }
-
-int				main(void)
-{
-	char	*str;
-
-	str = ft_itoa(-25641);
-	ft_putstr(str);
-	return (0);
-}

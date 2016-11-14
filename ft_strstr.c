@@ -12,30 +12,23 @@
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
 	int i;
 	int c;
 
 	i = 0;
 	c = 0;
-	if (little[0] == '\0')
-		return ((char *)big);
-	while (big[i + 1] != '\0')
+	while (haystack[i])
 	{
-		i = i - c;
-		c = 0;
-		while (big[i + 1] != '\0' && big[i] != little[c])
-			i++;
-		while (big[i] == little[c] && little[c] != '\0')
-		{
+		while (haystack[i + c] == needle[c] && needle[c])
 			c++;
-			i++;
-		}
+		if (!(needle[c]))
+			return (&((char*)haystack)[i]);
+		c = 0;
 		i++;
-		if (little[c] == '\0')
-			return ((char *)&(big[i - c - 1]));
-		return (0);
 	}
-	return (0);
+	if (haystack[i] == needle[c])
+		return (&((char*)haystack)[i]);
+	return (NULL);
 }
