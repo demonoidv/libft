@@ -14,17 +14,15 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char			*str;
-	unsigned int	i;
+	char	*str;
+	size_t	i;
 
 	i = 0;
-	len = (start + len);
 	if (!(str = ft_strnew(len + 1)))
 		return (NULL);
-	while (i < (len - start) && s[i])
+	while (i < len)
 	{
-		str[i] = s[start];
-		start++;
+		str[i] = s[start + i];
 		i++;
 	}
 	str[i] = '\0';
