@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:13:53 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:13:56 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/18 11:12:14 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/18 11:21:16 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	*ft_memalloc(size_t size)
 {
-	unsigned char *zmem;
+	void *ptr;
 
-	if ((zmem = (unsigned char *)malloc(sizeof(unsigned char) * size)))
-	{
-		ft_bzero(zmem, size);
-		return (zmem);
-	}
-	return (NULL);
+	if ((ptr = malloc(size)))
+		ft_bzero(ptr, size);
+	return (ptr);
 }

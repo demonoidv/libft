@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:17:09 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:17:12 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/17 16:09:49 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/17 16:09:52 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 char	*ft_strmap(char const *s, char (*f)(char))
 {
-	int		i;
-	char	*str;
-	int		len;
+	char	*dest;
+	size_t	i;
 
-	i = 0;
-	len = ft_strlen(s);
-	if (!(str = ft_strnew(len)))
-		return (NULL);
-	while (s[i])
+	if (s)
 	{
-		str[i] = f(s[i]);
-		i++;
+		if ((dest = ft_strnew(ft_strlen(s))))
+		{
+			i = 0;
+			while (s[i])
+			{
+				dest[i] = f(s[i]);
+				i++;
+			}
+		}
+		return (dest);
 	}
-	return (str);
+	return (NULL);
 }
