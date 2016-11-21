@@ -31,7 +31,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			((char*)dest)[i] = ((char*)tmp)[i];
 			i++;
 		}
-		free(tmp);
+		ft_memdel(tmp);
 	}
 	return (dest);
 }
