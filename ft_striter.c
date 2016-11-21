@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:16:18 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:16:20 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/17 16:09:13 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/17 16:09:30 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	int i;
+	size_t i;
 
-	i = 0;
-	while (s[i])
+	if (s && f)
 	{
-		f(&s[i]);
-		i++;
+		i = 0;
+		while (s[i])
+			f(&s[i++]);
 	}
 }

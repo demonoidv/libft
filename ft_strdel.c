@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:15:54 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:15:56 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/17 16:07:51 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/17 16:08:51 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	ft_strdel(char **as)
 {
-	free(*as);
-	*as = NULL;
+	ft_memdel((void**)as);
 }

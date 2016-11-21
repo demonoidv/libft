@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:14:39 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:40:33 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/18 11:03:33 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/18 11:24:16 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*tmp;
+	unsigned char	*pt;
 
-	tmp = (char *)s;
-	while (n)
+	pt = (unsigned char*)s;
+	while (n--)
 	{
-		*tmp = c;
-		tmp++;
-		n--;
+		*pt++ = c;
 	}
 	return (s);
 }

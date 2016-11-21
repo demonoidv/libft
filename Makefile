@@ -6,7 +6,7 @@
 #    By: vsporer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/15 15:51:49 by vsporer           #+#    #+#              #
-#    Updated: 2016/11/15 16:05:34 by vsporer          ###   ########.fr        #
+#    Updated: 2016/11/17 15:03:22 by vsporer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
 		ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
 		ft_strsplit.c ft_itoa.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c \
-		ft_putendl_fd.c ft_putnbr_fd.c
+		ft_putendl_fd.c ft_putnbr_fd.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
+		ft_lstiter.c ft_lstmap.c ft_lstnew.c
 
 OBJ =	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 		ft_isdigit.o ft_isprint.o ft_memalloc.o ft_memccpy.o ft_memchr.o \
@@ -34,7 +35,9 @@ OBJ =	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 		ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o \
 		ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o \
 		ft_strsplit.o ft_itoa.o ft_putendl.o ft_putchar_fd.o ft_putstr_fd.o \
-		ft_putendl_fd.o ft_putnbr_fd.o
+		ft_putendl_fd.o ft_putnbr_fd.o ft_lstadd.o ft_lstdel.o ft_lstdelone.o \
+		ft_lstiter.o ft_lstmap.o ft_lstnew.o
+
 
 CC =	gcc -Wall -Werror -Wextra
 

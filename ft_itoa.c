@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 14:12:04 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:28:09 by vsporer          ###   ########.fr       */
+/*   Updated: 2016/11/18 11:32:28 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char			*ft_itoa(int n)
 {
 	char	*str;
 
-	if ((str = ft_strnew(ft_len_nb(n))))
+	if ((str = ft_strnew(ft_len_nb(n) + 1)))
 	{
 		ft_bzero(str, ft_len_nb(n) + 1);
 		if (str)

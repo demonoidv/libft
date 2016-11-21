@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:16:01 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:16:04 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/17 16:10:06 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/17 16:10:10 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		ft_strequ(char const *s1, char const *s2)
 {
+	if (s1 == NULL || s2 == NULL)
+		return ((s1 == s2) ? 1 : 0);
 	if (ft_strcmp(s1, s2))
 		return (0);
 	return (1);

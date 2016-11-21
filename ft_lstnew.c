@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 14:13:42 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:13:45 by vsporer          ###   ########.fr       */
+/*   Updated: 2016/11/17 15:36:10 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list *list;
 
+	content_size = (content == 0) ? 0 : content_size;
 	if ((list = (t_list*)malloc(sizeof(t_list))))
 	{
 		if (content != NULL)
