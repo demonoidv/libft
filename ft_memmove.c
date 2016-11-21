@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/18 11:03:13 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/18 11:23:54 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/15 14:14:35 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/15 14:41:36 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	i;
 	void	*tmp;
+	size_t	i;
 
 	i = 0;
-	tmp = (void*)malloc(n);
-	if (tmp)
+	if ((tmp = (void*)malloc(sizeof(*tmp) * n)))
 	{
 		while (i < n)
 		{
