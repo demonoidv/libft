@@ -59,7 +59,7 @@ char			*ft_strtrim(char const *s)
 			i++;
 		}
 		dest[i - val[1]] = 0;
-		free(val);
+		ft_memdel((void*)&val);
 		return (dest);
 	}
 	else

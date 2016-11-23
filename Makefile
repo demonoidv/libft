@@ -39,7 +39,7 @@ OBJ =	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 		ft_lstiter.o ft_lstmap.o ft_lstnew.o
 
 
-CC =	gcc -Wall -Werror -Wextra
+CC =	gcc -Wall -Wextra -Werror
 
 all: $(NAME)
 
