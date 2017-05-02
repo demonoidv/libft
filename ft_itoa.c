@@ -5,50 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:12:04 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/18 11:32:28 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/24 16:57:35 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/24 16:57:50 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_len_nb(int n)
+static size_t	ft_nblen(int n)
 {
-	size_t	i;
+	size_t count;
 
-	i = 0;
+	count = 1;
 	if (n == -2147483648)
 		return (11);
 	if (n < 0)
 	{
 		n = -n;
-		i++;
+		count++;
 	}
 	while (n / 10 != 0)
 	{
 		n = n / 10;
-		i++;
+		count++;
 	}
-	return (i);
+	return (count);
 }
 
-static void		ft_itoa_cat(char **str, int n)
+static void		ft_itoa_rec(char **str, int n)
 {
-	char	c;
+	char digit;
 
-	c = (n % 10) + 48;
+	digit = (n % 10) + 48;
 	if (n / 10 > 0)
-		ft_itoa_cat(str, n / 10);
-	*str = ft_strncat(*str, &c, 1);
+		ft_itoa_rec(str, n / 10);
+	*str = ft_strncat(*str, &digit, 1);
 }
 
 char			*ft_itoa(int n)
 {
-	char	*str;
+	char *str;
 
-	if ((str = ft_strnew(ft_len_nb(n) + 1)))
+	if ((str = ft_strnew(ft_nblen(n))))
 	{
-		ft_bzero(str, ft_len_nb(n) + 1);
+		ft_bzero(str, ft_nblen(n) + 1);
 		if (str)
 		{
 			if (n < 0)
@@ -61,7 +61,7 @@ char			*ft_itoa(int n)
 				n = -n;
 				str = ft_strcat(str, "-");
 			}
-			ft_itoa_cat(&str, n);
+			ft_itoa_rec(&str, n);
 		}
 	}
 	return (str);

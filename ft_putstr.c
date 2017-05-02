@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 14:15:09 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:41:10 by vsporer          ###   ########.fr       */
+/*   Created: 2016/11/24 16:58:34 by vsporer           #+#    #+#             */
+/*   Updated: 2016/11/24 16:58:37 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	ft_putstr(char const *s)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
+	if (s)
+		write(1, s, ft_strlen(s));
 }
