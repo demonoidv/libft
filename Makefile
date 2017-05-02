@@ -6,7 +6,7 @@
 #    By: vsporer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/15 15:51:49 by vsporer           #+#    #+#              #
-#    Updated: 2016/11/24 17:01:32 by vsporer          ###   ########.fr        #
+#    Updated: 2017/05/02 15:12:57 by vsporer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,10 @@ SRCS = 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
 		ft_strsplit.c ft_itoa.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c \
 		ft_putendl_fd.c ft_putnbr_fd.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
-		ft_lstiter.c ft_lstmap.c ft_lstnew.c
+		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_itoa_base.c
 
-OBJ =	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
+OBJ = ${SRCS:c=o}
+#OBJ =	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 		ft_isdigit.o ft_isprint.o ft_memalloc.o ft_memccpy.o ft_memchr.o \
 		ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o \
 		ft_putchar.o ft_putnbr.o ft_putstr.o ft_strcat.o ft_strchr.o \
