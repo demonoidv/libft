@@ -85,5 +85,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char				*ft_ulltoa_base(unsigned long long nb, int base);
 char				*ft_strjoin_free(char *s1, char *s2, int i);
 char				*ft_strsubstitute(char *s1, char *chr, char *s2);
+int					ft_countchar(char *str, char c);
 
 #endif

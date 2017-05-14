@@ -24,7 +24,7 @@ SRCS = 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_strsplit.c ft_itoa.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c \
 		ft_putendl_fd.c ft_putnbr_fd.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
 		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_ulltoa_base.c \
-		ft_strjoin_free.c ft_strsubstitute.c
+		ft_strjoin_free.c ft_strsubstitute.c ft_countchar.c
 
 OBJ = ${SRCS:c=o}
 
