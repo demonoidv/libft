@@ -33,7 +33,7 @@ char	*ft_strjoin_free(char *s1, char *s2, int i)
 			dest = NULL;
 		if (i == 1 || i == 3)
 			ft_strdel(&s1);
-		else if (i == 2 || i == 3)
+		if (i == 2 || i == 3)
 			ft_strdel(&s2);
 	}
 	return (dest);
