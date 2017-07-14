@@ -34,7 +34,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo Compile libft.a
-	@$(CC) -c $(SRCS) $(SRCS)
+	@$(CC) -c $(SRCS)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo Done
