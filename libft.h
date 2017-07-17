@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <wchar.h>
 
 typedef struct		s_list
 {
@@ -86,5 +87,9 @@ char				*ft_ulltoa_base(unsigned long long nb, int base);
 char				*ft_strjoin_free(char *s1, char *s2, int i);
 char				*ft_strsubstitute(char *s1, char *chr, char *s2);
 int					ft_countchar(char *str, char c);
+int					ft_wcharlen(wchar_t wc);
+int					ft_wcrtomb(char *str, wchar_t wc);
+size_t				ft_wcsrlen(wchar_t *wcs, size_t lenmax);
+size_t				ft_wcsrtombs(char *str, wchar_t *wcs, size_t lenmax);
 
 #endif
