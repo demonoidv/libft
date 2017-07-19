@@ -55,7 +55,7 @@ size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *big, const char *little,\
-		size_t len);
+					size_t len);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
@@ -85,11 +85,17 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char				*ft_ulltoa_base(unsigned long long nb, int base);
 char				*ft_strjoin_free(char *s1, char *s2, int i);
-char				*ft_strsubstitute(char *s1, char *chr, char *s2);
+char				*ft_strsubstitute(char *s1, char *chr, char *s2, \
+					size_t len);
 int					ft_countchar(char *str, char c);
 int					ft_wcharlen(wchar_t wc);
 int					ft_wcrtomb(char *str, wchar_t wc);
 size_t				ft_wcsrlen(wchar_t *wcs, size_t lenmax);
 size_t				ft_wcsrtombs(char *str, wchar_t *wcs, size_t lenmax);
+void				ft_putstr_minlen(char *str, size_t len);
+char				*ft_strstr_minlen(const char *haystack, \
+					const char *needle, size_t len);
+char				*ft_strsubstitute_minlen(char *s1, char *chr, char *s2, \
+					size_t len);
 
 #endif
