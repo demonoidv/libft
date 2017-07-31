@@ -14,7 +14,10 @@ NAME = 		libft.a
 
 INCLUDES =	includes/
 PATH_BASE =	src/
+PATH_GNL =	src/get_next_line/
 PATH_OBJ =	obj/
+
+SRC_GNL =	$(PATH_GNL)get_next_line.c
 
 SRCS = 		$(PATH_BASE)ft_atoi.c\
 			$(PATH_BASE)ft_bzero.c\
@@ -87,6 +90,7 @@ SRCS = 		$(PATH_BASE)ft_atoi.c\
 			$(PATH_BASE)ft_lstaddback.c
 
 OBJ =		$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))
+			$(patsubst $(PATH_GNL)%.c, $(PATH_OBJ)%.o, $(SRC_GNL))
 
 CC =		gcc -Wall -Wextra -Werror
 CCI =		-I includes/
@@ -100,6 +104,11 @@ $(NAME) : $(OBJ)
 	@echo "Done !"
 
 $(PATH_OBJ)%.o : $(PATH_BASE)%.c
+	@mkdir -p $(@D)
+	@echo "Compiling $< to $@"
+	@$(CC) $(CCI) -c $< -o $@
+
+$(PATH_OBJ)%.o : $(PATH_GNL)%.c
 	@mkdir -p $(@D)
 	@echo "Compiling $< to $@"
 	@$(CC) $(CCI) -c $< -o $@
