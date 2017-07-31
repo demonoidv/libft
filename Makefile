@@ -10,44 +10,108 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 	libft.a
+NAME = 		libft.a
 
-SRCS = 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
-		ft_isdigit.c ft_isprint.c ft_memalloc.c ft_memccpy.c ft_memchr.c \
-		ft_memcmp.c ft_memcpy.c ft_memdel.c ft_memmove.c ft_memset.c \
-		ft_putchar.c ft_putnbr.c ft_putstr.c ft_strcat.c ft_strchr.c \
-		ft_strclr.c ft_strcmp.c ft_strcpy.c ft_strdel.c ft_strdup.c \
-		ft_strequ.c ft_striter.c  ft_striteri.c ft_strjoin.c ft_strlcat.c \
-		ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c \
-		ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
-		ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
-		ft_strsplit.c ft_itoa.c ft_putendl.c ft_putchar_fd.c ft_putstr_fd.c \
-		ft_putendl_fd.c ft_putnbr_fd.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
-		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_ulltoa_base.c \
-		ft_strjoin_free.c ft_strsubstitute.c ft_countchar.c ft_wcharlen.c \
-		ft_wcrtomb.c ft_wcsrlen.c ft_wcsrtombs.c ft_putstr_minlen.c \
-		ft_strstr_minlen.c ft_lstaddback.c
+INCLUDES =	includes/
+PATH_BASE =	src/
+PATH_OBJ =	obj/
 
-OBJ = ${SRCS:c=o}
+SRCS = 		$(PATH_BASE)ft_atoi.c\
+			$(PATH_BASE)ft_bzero.c\
+			$(PATH_BASE)ft_isalnum.c\
+			$(PATH_BASE)ft_isalpha.c\
+			$(PATH_BASE)ft_isascii.c\
+			$(PATH_BASE)ft_isdigit.c\
+			$(PATH_BASE)ft_isprint.c\
+			$(PATH_BASE)ft_memalloc.c\
+			$(PATH_BASE)ft_memccpy.c\
+			$(PATH_BASE)ft_memchr.c\
+			$(PATH_BASE)ft_memcmp.c\
+			$(PATH_BASE)ft_memcpy.c\
+			$(PATH_BASE)ft_memdel.c\
+			$(PATH_BASE)ft_memmove.c\
+			$(PATH_BASE)ft_memset.c\
+			$(PATH_BASE)ft_putchar.c\
+			$(PATH_BASE)ft_putnbr.c\
+			$(PATH_BASE)ft_putstr.c\
+			$(PATH_BASE)ft_strcat.c\
+			$(PATH_BASE)ft_strchr.c\
+			$(PATH_BASE)ft_strclr.c\
+			$(PATH_BASE)ft_strcmp.c\
+			$(PATH_BASE)ft_strcpy.c\
+			$(PATH_BASE)ft_strdel.c\
+			$(PATH_BASE)ft_strdup.c\
+			$(PATH_BASE)ft_strequ.c\
+			$(PATH_BASE)ft_striter.c\
+			$(PATH_BASE)ft_striteri.c\
+			$(PATH_BASE)ft_strjoin.c\
+			$(PATH_BASE)ft_strlcat.c\
+			$(PATH_BASE)ft_strlen.c\
+			$(PATH_BASE)ft_strmap.c\
+			$(PATH_BASE)ft_strmapi.c\
+			$(PATH_BASE)ft_strncat.c\
+			$(PATH_BASE)ft_strncmp.c\
+			$(PATH_BASE)ft_strncpy.c\
+			$(PATH_BASE)ft_strnequ.c\
+			$(PATH_BASE)ft_strnew.c\
+			$(PATH_BASE)ft_strnstr.c\
+			$(PATH_BASE)ft_strrchr.c\
+			$(PATH_BASE)ft_strstr.c\
+			$(PATH_BASE)ft_strsub.c\
+			$(PATH_BASE)ft_strtrim.c\
+			$(PATH_BASE)ft_tolower.c\
+			$(PATH_BASE)ft_toupper.c\
+			$(PATH_BASE)ft_strsplit.c\
+			$(PATH_BASE)ft_itoa.c\
+			$(PATH_BASE)ft_putendl.c\
+			$(PATH_BASE)ft_putchar_fd.c\
+			$(PATH_BASE)ft_putstr_fd.c\
+			$(PATH_BASE)ft_putendl_fd.c\
+			$(PATH_BASE)ft_putnbr_fd.c\
+			$(PATH_BASE)ft_lstadd.c\
+			$(PATH_BASE)ft_lstdel.c\
+			$(PATH_BASE)ft_lstdelone.c\
+			$(PATH_BASE)ft_lstiter.c\
+			$(PATH_BASE)ft_lstmap.c\
+			$(PATH_BASE)ft_lstnew.c\
+			$(PATH_BASE)ft_ulltoa_base.c\
+			$(PATH_BASE)ft_strjoin_free.c\
+			$(PATH_BASE)ft_strsubstitute.c\
+			$(PATH_BASE)ft_countchar.c\
+			$(PATH_BASE)ft_wcharlen.c\
+			$(PATH_BASE)ft_wcrtomb.c\
+			$(PATH_BASE)ft_wcsrlen.c\
+			$(PATH_BASE)ft_wcsrtombs.c\
+			$(PATH_BASE)ft_putstr_minlen.c\
+			$(PATH_BASE)ft_strstr_minlen.c\
+			$(PATH_BASE)ft_lstaddback.c
 
-CC =	gcc -Wall -Wextra -Werror
+OBJ =		$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))
+
+CC =		gcc -Wall -Wextra -Werror
+CCI =		-I includes/
 
 all: $(NAME)
 
-$(NAME):
-	@echo Compile libft.a
-	@$(CC) -c $(SRCS)
+$(NAME) : $(OBJ)
+	@echo "Compiling libft.a"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo Done
+	@echo "Done !"
+
+$(PATH_OBJ)%.o : $(PATH_BASE)%.c
+	@mkdir -p $(@D)
+	@echo "Compiling $< to $@"
+	@$(CC) $(CCI) -c $< -o $@
 
 .PHONY: clean
+
 clean:
-	@rm -f $(OBJ)
-	@echo Clean all .o : Done
+	@rm -rf $(PATH_OBJ)
+	@echo "Clean all .o : Done"
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo Delete libft.a : Done
+	@rm -rf $(NAME)
+	@echo "Delete libft.a : Done"
 
 re: fclean all
