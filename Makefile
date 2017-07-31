@@ -89,7 +89,7 @@ SRCS = 		$(PATH_BASE)ft_atoi.c\
 			$(PATH_BASE)ft_strstr_minlen.c\
 			$(PATH_BASE)ft_lstaddback.c
 
-OBJ =		$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))
+OBJ =		$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))\
 			$(patsubst $(PATH_GNL)%.c, $(PATH_OBJ)%.o, $(SRC_GNL))
 
 CC =		gcc -Wall -Wextra -Werror
