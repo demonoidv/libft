@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <wchar.h>
+# include "get_next_line.h"
+# include "ft_btree.h"
 
 typedef struct		s_list
 {
@@ -97,6 +99,5 @@ char				*ft_strstr_minlen(const char *haystack, \
 					const char *needle, size_t len);
 char				*ft_strsubstitute_minlen(char *s1, char *chr, char *s2, \
 					size_t len);
-int					get_next_line(const int fd, char **line);
 
 #endif
