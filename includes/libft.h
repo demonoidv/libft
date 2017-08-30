@@ -6,7 +6,7 @@
 /*   By: vsporer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 13:35:39 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/18 11:28:29 by vsporer          ###   ########.fr       */
+/*   Updated: 2017/08/30 23:08:33 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <wchar.h>
 # include "get_next_line.h"
-# include "ft_btree.h"
 
 typedef struct		s_list
 {
@@ -99,5 +98,9 @@ char				*ft_strstr_minlen(const char *haystack, \
 					const char *needle, size_t len);
 char				*ft_strsubstitute_minlen(char *s1, char *chr, char *s2, \
 					size_t len);
+int					get_next_line(const int fd, char **line);
+int					ft_printf(const char *format, ...);
+void				ft_swap_ptr(void **p1, void **p2);
+size_t				ft_nbrlen(int n);
 
 #endif
