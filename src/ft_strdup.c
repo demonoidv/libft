@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 14:15:58 by vsporer           #+#    #+#             */
-/*   Updated: 2016/11/15 14:43:29 by vsporer          ###   ########.fr       */
+/*   Updated: 2017/08/30 22:48:17 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(char const *s)
 	len = ft_strlen(s);
 	if ((str = (char *)malloc((len + 1) * sizeof(*str))) == NULL)
 		return (NULL);
-	while (s[i])
+	while ((size_t)i < len)
 	{
 		str[i] = s[i];
 		i++;
