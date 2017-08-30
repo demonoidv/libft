@@ -6,7 +6,7 @@
 #    By: vsporer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/15 15:51:49 by vsporer           #+#    #+#              #
-#    Updated: 2017/05/02 15:12:57 by vsporer          ###   ########.fr        #
+#    Updated: 2017/08/30 22:51:24 by demodev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,9 @@ NAME = 		libft.a
 INCLUDES =	includes/
 PATH_BASE =	src/
 PATH_GNL =	$(PATH_BASE)get_next_line/
-PATH_RBT =	$(PATH_BASE)ft_rbtree/
 PATH_OBJ =	obj/
 
 SRC_GNL =	$(PATH_GNL)get_next_line.c
-
-SRC_RBT =	$(PATH_RBT)ft_btreenew.c\
-			$(PATH_RBT)ft_btreeadd.c\
-			$(PATH_RBT)ft_btreenext.c\
-			$(PATH_RBT)ft_btreedel.c
 
 SRCS = 		$(PATH_BASE)ft_atoi.c\
 			$(PATH_BASE)ft_bzero.c\
@@ -97,7 +91,6 @@ SRCS = 		$(PATH_BASE)ft_atoi.c\
 
 OBJ =		$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))\
 			$(patsubst $(PATH_GNL)%.c, $(PATH_OBJ)%.o, $(SRC_GNL))\
-			$(patsubst $(PATH_RBT)%.c, $(PATH_OBJ)%.o, $(SRC_RBT))
 
 CC =		gcc -Wall -Wextra -Werror
 CCI =		-I includes/
@@ -116,11 +109,6 @@ $(PATH_OBJ)%.o : $(PATH_BASE)%.c
 	@$(CC) $(CCI) -c $< -o $@
 
 $(PATH_OBJ)%.o : $(PATH_GNL)%.c
-	@mkdir -p $(@D)
-	@echo "Compiling $< to $@"
-	@$(CC) $(CCI) -c $< -o $@
-
-$(PATH_OBJ)%.o : $(PATH_RBT)%.c
 	@mkdir -p $(@D)
 	@echo "Compiling $< to $@"
 	@$(CC) $(CCI) -c $< -o $@
