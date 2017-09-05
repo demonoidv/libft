@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 10:59:58 by vsporer           #+#    #+#             */
-/*   Updated: 2017/07/20 11:10:44 by vsporer          ###   ########.fr       */
+/*   Updated: 2017/09/04 20:50:46 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,41 @@ int		ft_printf_get_prec(char *flag)
 		return (-1);
 }
 
-char	*ft_printf_prec(char *flag, char *res, int prec_value)
+void	ft_printf_prec(t_ftplst *list)
 {
 	char	*tmp;
 	int		i;
 	int		posconv;
 
-	posconv = ft_strlen(flag) - 1;
-	i = ((ft_strchr(flag, '+') && (flag[posconv] == 'd' || flag\
-	[posconv] == 'i'))) ? (ft_strlen(res)) : (ft_strlen(res));
-	if (i <= prec_value)
+	posconv = ft_strlen(list->flag) - 1;
+	i = ((ft_strchr(list->flag, '+') && (list->flag[posconv] == 'd' || \
+	list->flag[posconv] == 'i'))) ? (ft_strlen(list->arg)) : \
+	(ft_strlen(list->arg));
+	if (i <= list->prec)
 	{
-		i = prec_value - i;
-		if (*res == '-')
+		i = list->prec - i;
+		if (*list->arg == '-')
 			i++;
-		if (flag[posconv] == 'p')
+		if (list->flag[posconv] == 'p')
 			i += 2;
-		if (!(tmp = ft_strnew(i)))
-			return (NULL);
-		while (i > 0)
-			tmp[--i] = '0';
-		res = (ft_strjoin_free(tmp, res, 3));
+		if ((tmp = ft_strnew(i)))
+		{
+			while (i > 0)
+				tmp[--i] = '0';
+			list->arg = (ft_strjoin_free(tmp, list->arg, 3));
+		}
 	}
-	return (res);
 }
 
-char	*ft_printf_prec_s(char *res, int prec_value)
+void	ft_printf_prec_s(t_ftplst *list)
 {
-	char	*ret;
+	char	*res;
 
-	if ((int)ft_strlen(res) > prec_value && prec_value >= 0)
+	if ((int)ft_strlen(list->arg) > list->prec && list->prec >= 0)
 	{
-		ret = ft_strnew((size_t)prec_value);
-		ret = ft_strncpy(ret, res, prec_value);
-		ft_strdel(&res);
-		return (ret);
+		res = ft_strnew((size_t)list->prec);
+		res = ft_strncpy(res, list->arg, list->prec);
+		ft_strdel(&list->arg);
+		list->arg = res;
 	}
-	return (res);
 }

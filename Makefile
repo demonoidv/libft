@@ -6,7 +6,7 @@
 #    By: vsporer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/15 15:51:49 by vsporer           #+#    #+#              #
-#    Updated: 2017/08/30 23:25:32 by demodev          ###   ########.fr        #
+#    Updated: 2017/09/05 19:34:25 by demodev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_FTPF =		$(PATH_FTPF_SRC)ft_printf.c\
 				$(PATH_FTPF_SRC)ft_printf_search_field.c\
 				$(PATH_FTPF_SRC)ft_printf_switch.c\
 				$(PATH_FTPF_SRC)ft_printf_tolst.c\
+				$(PATH_FTPF_SRC)ft_printf_list.c\
 				$(PATH_FTPF_SRC)ft_printf_tools.c
 
 FTPF_ATT =		$(PATH_FTPF_ATT)ft_printf_get_minus.c\

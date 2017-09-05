@@ -6,79 +6,70 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/19 13:50:45 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/30 22:38:07 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/05 17:04:47 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_index	ft_printf_get_attribute(char *flag, char *clean_flag, \
-t_index index)
+static void		ft_printf_get_attribute(t_ftplst *list)
 {
 	char	*tmp;
-	char	*newflag;
 
-	newflag = ft_strdup(flag);
-	flag[ft_strlen(newflag)] = '\0';
-	index.j = 1;
-	clean_flag[0] = '%';
-	while (ft_isattribute((flag)[index.i]))
-		(index.i)++;
-	if (index.i != 1 && (tmp = ft_strsub(newflag, 1, (index.i - 1))))
+	if ((list->clean_flag = ft_strnew(5)))
 	{
-		if (ft_strchr(tmp, '#'))
-			clean_flag[index.j++] = '#';
-		if (ft_strchr(tmp, '+'))
-			clean_flag[index.j++] = '+';
-		else if (ft_strchr(tmp, ' '))
-			clean_flag[index.j++] = ' ';
-		if (ft_strchr(tmp, '-'))
-			clean_flag[index.j++] = '-';
-		else if (ft_strchr(tmp, '0'))
-			clean_flag[index.j++] = '0';
-		ft_strdel(&tmp);
+		list->index.j = 1;
+		list->clean_flag[0] = '%';
+		while (ft_isattribute(list->flag[list->index.i]))
+			list->index.i++;
+		if (list->index.i != 1 && (tmp = ft_strsub(list->flag, 1, \
+		(list->index.i - 1))))
+		{
+			if (ft_strchr(tmp, '#'))
+				list->clean_flag[list->index.j++] = '#';
+			if (ft_strchr(tmp, '+'))
+				list->clean_flag[list->index.j++] = '+';
+			else if (ft_strchr(tmp, ' '))
+				list->clean_flag[list->index.j++] = ' ';
+			if (ft_strchr(tmp, '-'))
+				list->clean_flag[list->index.j++] = '-';
+			else if (ft_strchr(tmp, '0'))
+				list->clean_flag[list->index.j++] = '0';
+			ft_strdel(&tmp);
+			list->clean_flag[list->index.j] = '\0';
+		}
 	}
-	ft_strdel(&newflag);
-	return (index);
 }
 
-static t_att	ft_switch_clear_flag(char *flag, t_att att, t_index index, \
-va_list *ap)
+static void		ft_switch_clear_flag(t_ftplst *list, va_list *ap)
 {
-	index = ft_printf_get_attribute(flag, att.clean_flag, index);
-	index = ft_printf_search_field(flag, &att.clean_flag, index, ap);
-	if (flag[index.i] == '.')
-		index = ft_printf_search_prec(flag, &att.clean_flag, index, ap);
-	if (!(index.i = ft_printf_search_conv(flag, index.i)) && flag[1])
+	ft_printf_get_attribute(list);
+	ft_printf_search_field(list, ap);
+	if (list->flag[list->index.i] == '.')
+		ft_printf_search_prec(list, ap);
+	if (!ft_printf_search_conv(list))
 	{
-		att.clean_flag = ft_strjoin_free(att.clean_flag, \
-		flag + (ft_strlen(flag) - 1), 1);
-		att.flag_ok = 1;
+		list->clean_flag = ft_strjoin_free(list->clean_flag, \
+		list->flag + (ft_strlen(list->flag) - 1), 1);
+		list->flag_ok = 1;
 	}
 	else
 	{
-		att.clean_flag = ft_strjoin_free(att.clean_flag, (flag + index.i), 1);
-		if (ft_isalpha(att.clean_flag[ft_strlen(att.clean_flag) - 1]))
-			att.flag_ok = -1;
+		list->clean_flag = ft_strjoin_free(list->clean_flag, \
+		list->flag + list->index.i, 1);
+		if (ft_isalpha(list->clean_flag[ft_strlen(list->clean_flag) - 1]))
+			list->flag_ok = -1;
 	}
-	return (att);
 }
 
-t_att			ft_printf_clear_flag(char *flag, va_list *ap)
+void			ft_printf_clear_flag(t_ftplst *list, va_list *ap)
 {
-	t_index	index;
-	t_att	att;
-
-	index.i = 1;
-	att = ft_printf_start_struct(flag);
-	if (flag[ft_strlen(flag) - 1] == '%')
+	list->index.i = 1;
+	if (list->flag[ft_strlen(list->flag) - 1] == '%')
 	{
-		ft_strdel(&att.clean_flag);
-		att.clean_flag = ft_strdup(flag);
-		att.flag_ok = ((ft_strlen(flag) - 1) == 0) ? -1 : 1;
-		return (att);
+		list->clean_flag = ft_strdup(list->flag);
+		list->flag_ok = ((ft_strlen(list->flag) - 1) == 0) ? -1 : 1;
 	}
-	if (!att.clean_flag)
-		return (att);
-	return (ft_switch_clear_flag(flag, att, index, ap));
+	else if (!list->clean_flag)
+		ft_switch_clear_flag(list, ap);
 }

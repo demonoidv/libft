@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 10:59:58 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/19 13:58:31 by vsporer          ###   ########.fr       */
+/*   Updated: 2017/09/05 16:56:55 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,82 +25,81 @@ int			ft_printf_get_field(char *flag)
 		return (0);
 }
 
-char		*ft_printf_field_di(char *res, t_att attribute, char c)
+void		ft_printf_field_di(t_ftplst *list, char c)
 {
 	char	*tmp;
 	int		i;
 
-	if (attribute.field < 0)
-		i = (-attribute.field - ft_strlen(res));
+	if (list->field < 0)
+		i = (-list->field - ft_strlen(list->arg));
 	else
-		i = (attribute.field - ft_strlen(res));
-	if (!*res)
-		i = attribute.field;
-	if (!ft_strchr(res, '-') && attribute.sign && attribute.minus)
+		i = (list->field - ft_strlen(list->arg));
+	if (!*list->arg)
+		i = list->field;
+	if (!ft_strchr(list->arg, '-') && list->sign && list->minus)
 		i--;
-	if (i <= 0)
-		return (res);
-	if ((tmp = ft_strnew((size_t)i)))
+	if (!(i <= 0))
 	{
-		while (i)
-			tmp[--i] = c;
-		if ((attribute.minus && attribute.field != 0) || attribute.field < 0)
-			res = ft_strjoin_free(res, tmp, 3);
-		else
-			res = ft_strjoin_free(tmp, res, 3);
+		if ((tmp = ft_strnew((size_t)i)))
+		{
+			while (i)
+				tmp[--i] = c;
+			if ((list->minus && list->field != 0) || list->field < 0)
+				list->arg = ft_strjoin_free(list->arg, tmp, 3);
+			else
+				list->arg = ft_strjoin_free(tmp, list->arg, 3);
+		}
 	}
-	return (res);
 }
 
-static char	*ft_apply_field(char *flag, char *res, char *tmp, t_att att)
+static void	ft_apply_field(t_ftplst *list, char *tmp)
 {
-	if ((att.minus && att.field != 0) || att.field < 0)
+	if ((list->minus && list->field != 0) || list->field < 0)
 	{
-		if (!*res)
+		if (!*list->arg)
 		{
-			if (flag[ft_strlen(flag) - 1] == 's')
+			if (list->flag[ft_strlen(list->flag) - 1] == 's')
 				tmp[ft_strlen(tmp) - 1] = '\0';
 			else
-				*tmp = *res;
-			ft_strdel(&res);
-			return ((res = tmp));
+				*tmp = *list->arg;
+			ft_strdel(&list->arg);
+			list->arg = tmp;
 		}
 		else
-			return ((res = ft_strjoin_free(res, tmp, 3)));
+			list->arg = ft_strjoin_free(list->arg, tmp, 3);
 	}
-	if (!*res)
+	else if (!*list->arg)
 	{
-		tmp[ft_strlen(tmp) - 1] = *res;
-		ft_strdel(&res);
-		res = tmp;
+		tmp[ft_strlen(tmp) - 1] = *list->arg;
+		ft_strdel(&list->arg);
+		list->arg = tmp;
 	}
 	else
-		res = ft_strjoin_free(tmp, res, 3);
-	return (res);
+		list->arg = ft_strjoin_free(tmp, list->arg, 3);
 }
 
-char		*ft_printf_field(char *flag, char *res, t_att att, char c)
+void		ft_printf_field(t_ftplst *list, char c)
 {
 	char	*tmp;
 	int		i;
 
-	if (att.field < 0)
-		i = (-att.field - ft_strlen(res));
+	if (list->field < 0)
+		i = (-list->field - ft_strlen(list->arg));
 	else
-		i = (att.field - ft_strlen(res));
-	if (!*res)
-		i = att.field;
-	if (att.sign && att.minus)
+		i = (list->field - ft_strlen(list->arg));
+	if (!*list->arg)
+		i = list->field;
+	if (list->sign && list->minus)
 		i--;
-	if (att.nullchar == 0 && res[0] == '\0')
+	if (list->nullchar == 0 && list->arg[0] == '\0')
 		i++;
-	if (i <= 0)
-		return (res);
-	if ((tmp = ft_strnew((size_t)i)))
+	if (!(i <= 0))
 	{
-		while (i)
-			tmp[--i] = c;
-		res = ft_apply_field(flag, res, tmp, att);
+		if ((tmp = ft_strnew((size_t)i)))
+		{
+			while (i)
+				tmp[--i] = c;
+			ft_apply_field(list, tmp);
+		}
 	}
-	return (res);
 }

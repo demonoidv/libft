@@ -6,52 +6,47 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:00:05 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/30 22:08:03 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/05 18:36:47 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_att	ft_printf_switch_spec(char *flag, t_att attribute, va_list *ap)
+static void	ft_printf_switch_spec(t_ftplst *list, va_list *ap)
 {
-	if ((attribute.arg = ft_conv_lc_cup(flag, ap, &attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_ls_sup(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_b(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_percent(flag, attribute)))
-		return (attribute);
-	else if (attribute.flag_ok == 1)
-	{
-		attribute.arg = ft_conv_not_valid(flag, attribute);
-		return (attribute);
-	}
+	if (ft_conv_lc_cup(list, ap))
+		return ;
+	else if (ft_conv_ls_sup(list, ap))
+		return ;
+	else if (ft_conv_b(list, ap))
+		return ;
+	else if (ft_conv_percent(list))
+		return ;
+	else if (list->flag_ok == 1)
+		list->arg = ft_conv_not_valid(list);
 	else
-		return (attribute);
+		return ;
 }
 
-t_att	ft_printf_switch(char *flag, va_list *ap)
+void		ft_printf_switch(t_ftplst *list, va_list *ap)
 {
-	t_att	attribute;
-
-	attribute = ft_printf_load_struct(flag, ap);
-	if (!attribute.flag_ok)
-		return (attribute);
-	if ((attribute.arg = ft_conv_c(flag, ap, &attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_di(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_o(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_u(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_xp_xup(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_s(flag, ap, attribute)))
-		return (attribute);
-	else if ((attribute.arg = ft_conv_p(flag, ap, attribute)))
-		return (attribute);
+	ft_printf_load_struct(list, ap);
+	if (list->flag_ok <= 0)
+		return ;
+	if (ft_conv_c(list, ap))
+		return ;
+	else if (ft_conv_di(list, ap))
+		return ;
+	else if (ft_conv_o(list, ap))
+		return ;
+	else if (ft_conv_u(list, ap))
+		return ;
+	else if (ft_conv_xp_xup(list, ap))
+		return ;
+	else if (ft_conv_s(list, ap))
+		return ;
+	else if (ft_conv_p(list, ap))
+		return ;
 	else
-		return (ft_printf_switch_spec(flag, attribute, ap));
+		ft_printf_switch_spec(list, ap);
 }

@@ -6,18 +6,18 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 10:58:39 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/30 22:07:45 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/05 16:30:06 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_apply_neg(char *res, char *tmp)
+static void	ft_apply_neg(t_ftplst *list, char *tmp)
 {
-	if (*res == ' ')
+	if (*list->arg == ' ')
 	{
 		*tmp = *(tmp - 1);
-		tmp = res;
+		tmp = list->arg;
 		while (*(tmp + 1) == ' ')
 			tmp++;
 		if (*tmp != '0' && *(tmp + 1) == '0')
@@ -25,62 +25,61 @@ static void	ft_apply_neg(char *res, char *tmp)
 		else
 			*tmp = '-';
 	}
-	else if (*res == '0')
+	else if (*list->arg == '0')
 	{
 		*tmp = *(tmp - 1);
-		tmp = res;
+		tmp = list->arg;
 		*tmp = '-';
 	}
 }
 
-static char	*ft_printf_is_neg(char *res, t_att attribute)
+static char	*ft_printf_is_neg(t_ftplst *list)
 {
 	char	*tmp;
 
-	if (!(tmp = ft_strchr(res, '-')))
-		return (res);
-	if ((res - tmp) && ((attribute.zero && attribute.prec < 0) \
-	|| attribute.prec >= attribute.field))
+	if (!(tmp = ft_strchr(list->arg, '-')))
+		return (list->arg);
+	if ((list->arg - tmp) && ((list->zero && list->prec < 0) \
+	|| list->prec >= list->field))
 	{
 		*tmp = *(tmp - 1);
-		tmp = res;
-		if ((int)ft_strlen(res) < attribute.prec && attribute.prec >= \
-		attribute.field)
-			return (ft_strjoin_free("-", res, 2));
-		if ((int)ft_strlen(res) < attribute.field && attribute.field > \
-		attribute.prec)
-			return (ft_strjoin_free("-", res, 2));
-		*res = '-';
+		tmp = list->arg;
+		if ((int)ft_strlen(list->arg) < list->prec && list->prec >= list->field)
+			return (ft_strjoin_free("-", list->arg, 2));
+		else if ((int)ft_strlen(list->arg) < list->field && list->field > \
+		list->prec)
+			return (ft_strjoin_free("-", list->arg, 2));
+		*list->arg = '-';
 	}
 	else
-		ft_apply_neg(res, tmp);
-	return (res);
+		ft_apply_neg(list, tmp);
+	return (list->arg);
 }
 
-char		*ft_conv_di(char *flag, va_list *ap, t_att attribute)
+char		*ft_conv_di(t_ftplst *list, va_list *ap)
 {
 	int		i;
-	char	*res;
 	char	c;
 
-	c = ft_printf_attribute_zero_num(attribute);
-	i = ft_strlen(flag) - 1;
-	if (flag[i] != 'd' && flag[i] != 'i' && flag[i] != 'D')
+	c = ft_printf_attribute_zero_num(list);
+	i = ft_strlen(list->flag) - 1;
+	if (list->flag[i] != 'd' && list->flag[i] != 'i' && \
+	list->flag[i] != 'D')
 		return (NULL);
-	if (!(res = ft_printf_lenmod_i(flag, ap, i)))
+	if (!(list->arg = ft_printf_lenmod_i(list->flag, ap, i)))
 		return (NULL);
-	if (!res[0])
-		attribute.nullchar++;
-	if (ft_strlen(res) == 1 && *res == '0' && attribute.prec == 0)
-		*res = '\0';
-	if (attribute.prec > -1)
-		res = ft_printf_prec(flag, res, attribute.prec);
-	if (attribute.field)
-		res = ft_printf_field_di(res, attribute, c);
-	if (attribute.space && !attribute.sign)
-		res = ft_printf_attribute_space(res);
-	else if (attribute.sign)
-		res = ft_printf_attribute_sign_di(res, attribute);
-	res = ft_printf_is_neg(res, attribute);
-	return (res);
+	if (!list->arg[0])
+		list->nullchar++;
+	if (ft_strlen(list->arg) == 1 && *list->arg == '0' && list->prec == 0)
+		*list->arg = '\0';
+	if (list->prec > -1)
+		ft_printf_prec(list);
+	if (list->field)
+		ft_printf_field_di(list, c);
+	if (list->space && !list->sign)
+		list->arg = ft_printf_attribute_space(list->arg);
+	else if (list->sign)
+		ft_printf_attribute_sign_di(list);
+	list->arg = ft_printf_is_neg(list);
+	return (list->arg);
 }

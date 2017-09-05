@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 10:59:42 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/29 20:23:34 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/05 19:05:11 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,13 @@ static int		ft_search_conv(char c)
 		return (0);
 }
 
-static t_list	*ft_lstadd_flag(t_list *flag_list, char *format, int end)
+t_ftplst		*ft_get_flag(const char *format)
 {
-	char	*tmp;
-	t_list	*save;
+	int			i;
+	int			end;
+	t_ftplst	*list;
 
-	tmp = ft_strsub(format, 0, (end + 1));
-	ft_lstaddback(&flag_list, ft_lstnew(tmp, (end + 1)));
-	save = flag_list;
-	ft_strdel(&tmp);
-	while (flag_list->next)
-		flag_list = flag_list->next;
-	tmp = (char *)flag_list->content;
-	if (ft_search_conv(tmp[end]))
-		tmp[end + 1] = '\0';
-	return (save);
-}
-
-t_list			*ft_get_flag(const char *format)
-{
-	int		i;
-	int		end;
-	t_list	*flag_list;
-
-	flag_list = NULL;
+	list = NULL;
 	while (*(format += ft_search_percent(format)))
 	{
 		end = *format == '%' ? 1 : 0;
@@ -70,10 +53,11 @@ t_list			*ft_get_flag(const char *format)
 		{
 			i = ft_search_conv(format[end]);
 			if (i)
-				flag_list = ft_lstadd_flag(flag_list, (char *)format, end);
+				ft_ftplstaddback(&list, ft_ftplstnew(ft_strsub(format, 0, \
+				(end + 1))));
 			end++;
 		}
 		format += end;
 	}
-	return (flag_list);
+	return (list);
 }

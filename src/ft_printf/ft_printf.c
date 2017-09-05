@@ -6,12 +6,12 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 15:58:49 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/19 14:27:33 by vsporer          ###   ########.fr       */
+/*   Updated: 2017/09/05 19:08:16 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 static int	ft_printf_tostr(char **ret, t_list *list)
 {
 	t_list	*todel;
@@ -55,31 +55,46 @@ int			ft_asprintf(char **ret, const char *format, ...)
 		i = ft_printf_tostr(ret, list);
 	return (i);
 }
+*/
+
+static int	print_format(char *format)
+{
+	int		i;
+
+	i = 0;
+	while (format[i] && format[i] != '%')
+		i++;
+	if (*format != '%')
+		ft_putstr_minlen(format, i);
+	return (i);
+}
 
 int			ft_printf(const char *format, ...)
 {
-	va_list	ap;
-	t_list	*list;
-	t_list	*todel;
-	int		i;
-	int		nullchar;
+	t_ftplst	*list;
+	va_list		ap;
+	int			ret;
+	int			i;
 
-	nullchar = 0;
-	va_start(ap, format);
-	list = ft_printf_tolst((char*)format, &nullchar, &ap);
+	ret = 0;
 	i = 0;
+	list = ft_get_flag(format);
+	va_start(ap, format);
+	ft_printf_tolst(list, &ap);
 	va_end(ap);
-	if (list)
+	while (*format)
 	{
-		while (list)
+		if (*(format += i) == '%' && list)
 		{
-			todel = list;
-			ft_putstr_minlen(list->content, list->content_size);
-			i += list->content_size;
-			ft_memdel(&(list->content));
-			list = list->next;
-			free(todel);
+			ft_putstr_minlen(list->arg, list->size);
+			ret += list->size;
+			format += ft_strlen(list->flag);
+			ft_ftplstdel(&list);
 		}
+		else if (*format == '%')
+			format++;
+		i = print_format((char*)format);
+		ret += i;
 	}
-	return (i);
+	return (ret);
 }

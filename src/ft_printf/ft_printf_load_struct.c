@@ -6,28 +6,23 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/19 13:49:31 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/30 22:08:40 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/05 16:55:12 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_att	ft_printf_load_struct(char *flag, va_list *ap)
+void	ft_printf_load_struct(t_ftplst *list, va_list *ap)
 {
-	t_att	att;
-
-	att = ft_printf_clear_flag(flag, ap);
-	if (!att.flag_ok)
-		return (att);
-	att.field = ft_printf_get_field(att.clean_flag);
-	att.prec = ft_printf_get_prec(att.clean_flag);
-	att.sharp = (ft_strchr(att.clean_flag, '#')) ? (1) : (0);
-	att.zero = ft_printf_get_zero(att.clean_flag);
-	att.minus = ft_printf_get_minus(att.clean_flag);
-	att.space = (ft_strchr(att.clean_flag, ' ')) ? (1) : (0);
-	att.sign = (ft_strchr(att.clean_flag, '+')) ? (1) : (0);
-	if (att.flag_ok == -1)
-		return (att);
-	ft_strdel(&att.clean_flag);
-	return (att);
+	ft_printf_clear_flag(list, ap);
+	if (list->flag_ok && list->flag_ok != -1)
+	{
+		list->field = ft_printf_get_field(list->clean_flag);
+		list->prec = ft_printf_get_prec(list->clean_flag);
+		list->sharp = (ft_strchr(list->clean_flag, '#')) ? (1) : (0);
+		list->zero = ft_printf_get_zero(list->clean_flag);
+		list->minus = ft_printf_get_minus(list->clean_flag);
+		list->space = (ft_strchr(list->clean_flag, ' ')) ? (1) : (0);
+		list->sign = (ft_strchr(list->clean_flag, '+')) ? (1) : (0);
+	}
 }
