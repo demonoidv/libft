@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/19 14:08:19 by vsporer           #+#    #+#             */
-/*   Updated: 2017/09/04 22:23:06 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/07 15:53:05 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int			ft_printf_get_field(char *flag);
 int			ft_printf_get_prec(char *flag);
 int			ft_printf_get_zero(char *flag);
 int			ft_printf_get_minus(char *flag);
-int			ft_asprintf(char **ret, const char *format, ...);
-int			ft_fprintf(FILE *stream, const char *format, ...);
 int			ft_printf(const char *format, ...);
 
 #endif
