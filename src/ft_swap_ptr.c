@@ -6,13 +6,13 @@
 /*   By: demodev <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 23:24:28 by demodev           #+#    #+#             */
-/*   Updated: 2017/08/30 23:24:57 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/07 16:00:40 by demodev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swapi_ptr(void **p1, void **p2)
+void	ft_swap_ptr(void **p1, void **p2)
 {
 	void	*tmp;
 
