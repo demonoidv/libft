@@ -6,7 +6,7 @@
 /*   By: vsporer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 13:35:39 by vsporer           #+#    #+#             */
-/*   Updated: 2017/08/30 23:08:33 by demodev          ###   ########.fr       */
+/*   Updated: 2017/09/10 03:32:02 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char				*ft_strstr(const char *haystack, const char *needle);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
+unsigned long long	ft_atoull(const char *str);
 void				ft_putnbr(int nb);
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);

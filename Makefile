@@ -6,7 +6,7 @@
 #    By: vsporer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/15 15:51:49 by vsporer           #+#    #+#              #
-#    Updated: 2017/09/05 19:34:25 by demodev          ###   ########.fr        #
+#    Updated: 2017/09/10 03:31:29 by vsporer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ FTPF_CONV =		$(PATH_FTPF_CNV)ft_conv_c.c\
 				$(PATH_FTPF_CNV)ft_conv_not_valid.c
 
 SRCS =			$(PATH_BASE)ft_atoi.c\
+				$(PATH_BASE)ft_atoull.c\
 				$(PATH_BASE)ft_bzero.c\
 				$(PATH_BASE)ft_isalnum.c\
 				$(PATH_BASE)ft_isalpha.c\
