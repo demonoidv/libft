@@ -6,7 +6,7 @@
 /*   By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 15:58:49 by vsporer           #+#    #+#             */
-/*   Updated: 2017/10/12 21:32:09 by vsporer          ###   ########.fr       */
+/*   Updated: 2017/12/31 14:38:55 by vsporer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			ft_printf(const char *format, ...)
 		}
 		else if (*format == '%')
 			format++;
-		i = print_format((char*)format, 0);
+		i = print_format((char*)format, 1);
 		ret += i;
 	}
 	return (ret);
