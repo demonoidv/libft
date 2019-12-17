@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vsporer <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: vsporer <vsporer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/15 15:51:49 by vsporer           #+#    #+#              #
-#    Updated: 2017/12/12 19:19:00 by vsporer          ###   ########.fr        #
+#    Updated: 2019/12/17 12:34:24 by vsporer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRCS =			$(PATH_BASE)ft_atoi.c\
 				$(PATH_BASE)ft_memchr.c\
 				$(PATH_BASE)ft_memcmp.c\
 				$(PATH_BASE)ft_memcpy.c\
+				$(PATH_BASE)ft_memcpy_s.c\
 				$(PATH_BASE)ft_memdel.c\
 				$(PATH_BASE)ft_memmove.c\
 				$(PATH_BASE)ft_memset.c\
@@ -133,7 +134,9 @@ SRCS =			$(PATH_BASE)ft_atoi.c\
 				$(PATH_BASE)ft_strtablen.c\
 				$(PATH_BASE)ft_strtabadd.c\
 				$(PATH_BASE)ft_error.c\
-				$(PATH_BASE)ft_swap_ptr.c
+				$(PATH_BASE)ft_swap_ptr.c\
+				$(PATH_BASE)ft_putnbr_base.c\
+				$(PATH_BASE)ft_nbrlen_base.c
 
 OBJ =			$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))\
 				$(patsubst $(PATH_GNL)%.c, $(PATH_OBJ)%.o, $(SRC_GNL))\
