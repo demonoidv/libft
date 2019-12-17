@@ -12,7 +12,7 @@
 
 NAME = 			libft.a
 
-INCLUDES =		includes/
+INCLUDES =		include/
 PATH_BASE =		src/
 PATH_OBJ =		obj/
 PATH_GNL =		$(PATH_BASE)get_next_line/
@@ -145,13 +145,22 @@ OBJ =			$(patsubst $(PATH_BASE)%.c, $(PATH_OBJ)%.o, $(SRCS))\
 				$(patsubst $(PATH_FTPF_PF)%.c, $(PATH_OBJ)%.o, $(FTPF_PF))\
 				$(patsubst $(PATH_FTPF_CNV)%.c, $(PATH_OBJ)%.o, $(FTPF_CONV))
 
-CC =			gcc -Wall -Wextra -Werror
-CCI =			-I includes/
+CC =			gcc
+CFLAGS =		-Wall -Wextra -Werror
+CCI =			-I $(INCLUDES)
+
+ifdef DEBUG
+	CFLAGS +=	-O0 -g
+endif
+
+ifeq ($(LIBFT_HIDDEN), TRUE)
+	CFLAGS +=	-fvisibility=hidden
+endif
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	@echo "Compiling libft.a ...\033[K"
+	@echo "Compiling $(NAME) ...\033[K"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "\033[32mDone !\033[0m"
@@ -159,33 +168,32 @@ $(NAME) : $(OBJ)
 $(PATH_OBJ)%.o : $(PATH_BASE)%.c
 	@mkdir -p $(@D)
 	@echo "\033[36mCompiling $@\033[0m\033[K\033[1A\r"
-	@$(CC) $(CCI) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CCI) -c $< -o $@
 
 $(PATH_OBJ)%.o : $(PATH_GNL)%.c
 	@mkdir -p $(@D)
 	@echo "\033[1;34mCompiling $@\033[0m\033[K\033[1A\r"
-	@$(CC) $(CCI) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CCI) -c $< -o $@
 
 $(PATH_OBJ)%.o : $(PATH_FTPF_SRC)%.c
 	@mkdir -p $(@D)
 	@echo "\033[33mCompiling $@\033[0m\033[K\033[1A\r"
-	@$(CC) $(CCI) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CCI) -c $< -o $@
 
 $(PATH_OBJ)%.o : $(PATH_FTPF_ATT)%.c
 	@mkdir -p $(@D)
 	@echo "\033[33mCompiling $@\033[0m\033[K\033[1A\r"
-	@$(CC) $(CCI) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CCI) -c $< -o $@
 
 $(PATH_OBJ)%.o : $(PATH_FTPF_PF)%.c
 	@mkdir -p $(@D)
 	@echo "\033[33mCompiling $@\033[0m\033[K\033[1A\r"
-	@$(CC) $(CCI) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CCI) -c $< -o $@
 
 $(PATH_OBJ)%.o : $(PATH_FTPF_CNV)%.c
 	@mkdir -p $(@D)
 	@echo "\033[33mCompiling $@\033[0m\033[K\033[1A\r"
-	@$(CC) $(CCI) -c $< -o $@
-
+	@$(CC) $(CFLAGS) $(CCI) -c $< -o $@
 
 .PHONY: clean fclean re
 
